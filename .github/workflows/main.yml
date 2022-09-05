@@ -15,3 +15,11 @@ jobs:
         with:
           name: TFG.pdf
           path: ./TFG.pdf # or path/to/artifact
+      - name: Report Status
+        if: always()
+        uses: ravsamhq/notify-slack-action@master
+        with:
+          status: ${{ job.status }}
+          notify_when: 'failure'
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.ACTION_MONITORING_SLACK }}
