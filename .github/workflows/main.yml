@@ -1,0 +1,17 @@
+name: Build LaTeX document
+on: [push]
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v3
+      - name: Compile TFG
+        uses: dante-ev/latex-action@master
+        with:
+          root_file: TFG.tex
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: TFG.pdf
+          path: ./TFG.pdf # or path/to/artifact
